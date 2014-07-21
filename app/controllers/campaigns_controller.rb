@@ -2,7 +2,7 @@ class CampaignsController < ApplicationController
 
   ######### Listing all the campaigns #########
 	def index
-		@campaigns          = Campaign.paginate(:page => params[:page], :per_page => 10)
+		@campaigns          = Campaign.paginate(:page => params[:page], :per_page => 30)
 	end
 
 =begin 
