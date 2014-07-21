@@ -13,10 +13,10 @@
         <%=Choice.find(type).name%>
       </td>
       <td>
-        <%=CampaignChoiceLog.scores(rec_items.map(&:id)).count%>
+        <%#=CampaignChoiceLog.scores(rec_items.map(&:id)).count%>
       </td>
      <td>                    
-      <%=CampaignChoiceLog.invalid_scores(rec_items.map(&:id)).count%>
+      <%#=CampaignChoiceLog.invalid_scores(rec_items.map(&:id)).count%>
       </td>
     </tr>
    <%end%>
