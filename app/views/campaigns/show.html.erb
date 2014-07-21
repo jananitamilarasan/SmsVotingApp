@@ -13,6 +13,7 @@
         <%=Choice.find(type).name%>
       </td>
       <td>
+      <%=raise rec_items.map(&:id).inspect%>
         <%=CampaignChoiceLog.scores(rec_items.map(&:id)).count%>
       </td>
      <td>                    
