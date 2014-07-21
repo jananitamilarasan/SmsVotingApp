@@ -1,4 +1,4 @@
-<h2> <%=@campaign.name%></h2><br/>
+<h2> <%=@campaign.name%></h2>
 <div class="CSSTableGenerator" >
   <table >
     <tr>
@@ -6,14 +6,13 @@
       <td > SCORES </td>
       <td >INVALID SCORES </td>
     </tr>                          
-  <%@campaign_choice_logs.group_by {|ri| ri.choice.id}.each do |type, rec_items|%>
+  <%@campaign_choice_logs && @campaign_choice_logs.group_by {|ri| ri.choice.id}.each do |type, rec_items|%>
 
     <tr>
       <td >
         <%=Choice.find(type).name%>
       </td>
       <td>
-      <%=raise rec_items.map(&:id).inspect%>
         <%=CampaignChoiceLog.scores(rec_items.map(&:id)).count%>
       </td>
      <td>                    
