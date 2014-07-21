@@ -198,4 +198,7 @@ font-family: 'Open Sans', sans-serif;
   position:relative;
   top:1px;
 }
+.cntr_align_txt{
+  text-align: center;
+}
 
