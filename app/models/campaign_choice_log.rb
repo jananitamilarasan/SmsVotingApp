@@ -7,6 +7,6 @@ class CampaignChoiceLog < ActiveRecord::Base
   #### Check for invalid score #####
   scope :invalid_scores, ->(ids) { where("validity in (?)   && id in (?)",["pre","post"],ids)}
 def self.scores(ids)
-	where("id in (?) && validity like ?  && choice_id is NOT NULL",ids,'during')
+	where("id in (?)",ids)
 end
 end
