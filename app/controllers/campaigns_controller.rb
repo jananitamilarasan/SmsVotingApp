@@ -22,9 +22,9 @@ Parsing the file and saving in the db using import_file class method
 
 ##### The below method is used to display the scores for the particular campaig
 	def show
-		campaign              = Campaign.find_by_id(params[:id])
-		@campaign_choice_logs = campaign.campaign_choice_logs rescue []
-		redirect_to campaigns_path,:flash => { :error => "No Record found" } if campaign.nil? || @campaign_choice_logs.empty?
+		@campaign              = Campaign.find_by_id(params[:id])
+		@campaign_choice_logs = @campaign.campaign_choice_logs rescue []
+		redirect_to campaigns_path,:flash => { :error => "No Record found" } if @campaign.nil? || @campaign_choice_logs.empty?
 	end
 	private
     def campaign_params

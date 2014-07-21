@@ -11,9 +11,9 @@
 		TV SMS voting campaigns
 	</div>
 	<%if flash[:error].present?%>
-		<div class="alert-box error" ><span>error: </span><%=flash[:error]%></div>
+		<div class="alert-box error" ><%=flash[:error]%></div>
 	<%elsif flash[:notice]%>
-		<div class="alert-box notice" ><span>error: </span><%=flash[:notice]%></div>
+		<div class="alert-box notice" ><%=flash[:notice]%></div>
 	<%end%>
 
 <div id='cssmenu'>
