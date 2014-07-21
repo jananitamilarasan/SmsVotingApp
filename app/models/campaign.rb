@@ -15,7 +15,7 @@ And return the corresponding results to controller
 
 		valid       = false
 		if(params[:status]=="existing_doc")
-			file      = File.readlines('votes_sample.txt')
+			file      = File.readlines('votes.txt')
 			valid     = save_data(file)
 		elsif(params[:status]=="new_doc")
 			if params[:log_file] && params[:log_file].content_type=="text/plain"
@@ -33,7 +33,7 @@ And return the corresponding results to controller
 				record     =  Hash[u.gsub("VOTE ","VOTE:").strip.scan(/(\w+):(\w+)/).map { |(first, second)| [first.downcase.to_sym, second] }] rescue nil
 			  #### Check the whether incoming keys are in same order
 				if record.present? && (record.keys == CAMPAIGNS_KEYS)
-					campaign = Campaign.find_or_initialize_by(:name=>record[:campaign],:short_code=> record[:shortcode])
+					campaign = Campaign.find_or_initialize_by(:name=>	,:short_code=> record[:shortcode])
 					choice   = Choice.find_or_create_by(:name=>record[:choice])
 				    campaign.campaign_choice_logs.build(record.as_json(
 				  	            :except=>[:campaign,:shortcode,:choice]
