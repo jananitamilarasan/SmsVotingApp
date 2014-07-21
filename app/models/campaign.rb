@@ -1,4 +1,4 @@
-class Campaign < ActiveRecord::Base
+	class Campaign < ActiveRecord::Base
   
   ####### Assocaitions #####
   has_many :campaign_choice_logs, dependent: :destroy
@@ -15,7 +15,7 @@ And return the corresponding results to controller
 
 		valid       = false
 		if(params[:status]=="existing_doc")
-			file      = File.readlines('votes.txt')
+			file      = File.readlines('votes_sample.txt')
 			valid     = save_data(file)
 		elsif(params[:status]=="new_doc")
 			if params[:log_file] && params[:log_file].content_type=="text/plain"
