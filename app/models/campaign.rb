@@ -30,10 +30,10 @@ And return the corresponding results to controller
 		valid          = false
 			file.each do |u|
 				#### The below one is used to form Hash
-				record     =  Hash[u.gsub("VOTE ","VOTE:").strip.scan(/(\w+):(\w+)/).map { |(first, second)| [first.downcase.to_sym, second] }] rescue nil
+				record     =  Hash[u.gsub("VOTE ","VOTE:").strip.scan(/(\w+):(\w+)/).map { |(first, second)| [first.downcase.to_sym, second] }] rescue nil	
 			  #### Check the whether incoming keys are in same order
 				if record.present? && (record.keys == CAMPAIGNS_KEYS)
-					campaign = Campaign.find_or_initialize_by(:name=>	,:short_code=> record[:shortcode])
+					campaign = Campaign.find_or_initialize_by(:name=>record[:campaign],:short_code=> record[:shortcode])
 					choice   = Choice.find_or_create_by(:name=>record[:choice])
 				    campaign.campaign_choice_logs.build(record.as_json(
 				  	            :except=>[:campaign,:shortcode,:choice]
