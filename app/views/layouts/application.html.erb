@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SmsVotingApp</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<div class="website-txt">
+		TV SMS voting campaigns
+	</div>
+	<%if flash[:error].present?%>
+		<div class="alert-box error" ><span>error: </span><%=flash[:error]%></div>
+	<%elsif flash[:notice]%>
+		<div class="alert-box notice" ><span>error: </span><%=flash[:notice]%></div>
+	<%end%>
+
+<div id='cssmenu'>
+	<ul>
+	   <li class='active'><a href='/about'><span>About</span></a></li>
+	   <li><a href='/campaigns'><span>Campaign Lists</span></a></li>
+	</ul>
+</div>
+<%= yield %>
+
+</body>
+</html>

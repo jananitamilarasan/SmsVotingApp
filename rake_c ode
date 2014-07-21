@@ -1,0 +1,87 @@
+
+file = File.readlines('votes_sample.txt')
+file.each do |u|
+record =  Hash[u.gsub("VOTE","VOTE:").strip.scan(/(\w+):(\w+)/).map { |(first, second)| [first.downcase.to_sym, second] }]
+
+puts record.inspect
+puts "fffffff"
+
+puts record.as_json(:except=>[:campaign,:shortcode]).inspect
+puts "fffffff"
+end
+
+file = File.readlines('votes_sample.txt')
+file.each do |u|
+record =  Hash[u.gsub("VOTE ","VOTE:").strip.scan(/(\w+):(\w+)/).map { |(first, second)| [first.downcase.to_sym, second] }] rescue nil
+
+if record.present? && (record.keys == [:vote,:campaign,:validity,:choice,:conn,:msisdn,:guid,:shortcode])
+b = Campaign.find_or_initialize_by(:name=>record[:campaign])
+b.short_code= record[:shortcode]
+b.voting_logs.build(record.as_json(:except=>[:campaign,:shortcode]))
+b.save!
+puts "ffffffffffffff"
+puts record.inspect
+puts u.inspect
+puts b.inspect
+puts "ffffffffffffff"
+end
+end
+
+
+
+puts record.as_json(:except=>[:campaign,:shortcode])
+puts b.voting_logs.create!(record.as_json(:except=>[:campaign,:shortcode]))
+
+file = File.readlines('votes.txt')
+file.each do |u|
+puts "tttttttttttt"
+puts u.inspect
+
+record =  Hash[u.gsub("VOTE","VOTE:").strip.scan(/(\w+):(\w+)/).map { |(first, second)| [first.downcase.to_sym, second] }] rescue nil
+puts "7777777777777777"
+b = Campaign.find_or_initialize_by(:name=>record[:campaign]) rescue nil
+puts b.inspect
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+file = File.readlines('votes_sample.txt')
+file.each do |u|
+record =  Hash[u.gsub("VOTE ","VOTE:").strip.scan(/(\w+):(\w+)/).map { |(first, second)| [first.downcase.to_sym, second] }] rescue nil
+
+if record.present? && (record.keys == [:vote,:campaign,:validity,:choice,:conn,:msisdn,:guid,:shortcode])
+campaign = Campaign.find_or_initialize_by(:name=>record[:campaign],:short_code=> record[:shortcode])
+choice = Choice.find_or_create_by(:name=>record[:choice])
+campaign.campaign_choice_logs.build(record.as_json(:except=>[:campaign,:shortcode,:choice]).merge(:choice_id => choice.id))
+campaign.save!
+puts "ffffffffffffff"
+puts record.inspect
+puts u.inspect
+puts campaign.inspect
+puts "ffffffffffffff"
+end
+end
+
+
+Campaign.first.campaign_choice_logs.group_by {|ri| ri.choice_id}.each do |type, rec_items|
+  puts type
+
+  rec_items.each do |rec_item|
+    puts rec_item.inspect
+    puts rec_item.ingredient.inspect
+  end
+end

@@ -1,0 +1,48 @@
+<%if @campaigns.present?%>
+<div class="CSSTableGenerator" >
+  <table >
+    <tr>
+      <td>
+          Campaign
+      </td>
+      <td >
+        Actions
+      </td>                
+   </tr>
+   <%@campaigns.each do |campaign|%>
+
+   <tr>
+      <td >
+        <%=campaign.name.titleize%>	
+      </td>
+      <td>
+        <%=link_to("View Scores",campaign_path(campaign))%>
+      </td>
+  </tr>
+  <%end%>
+ </table>
+ <%= will_paginate @campaigns %>
+</div>
+          
+
+<%else%>
+  <div class="center">
+    <p class="title">Currently, we dont have any voting campaigns.</p>
+    <p>Please select any one of the options to import data into database</p>
+    <%= form_tag( '/campaigns', :method => :post, multipart: true ) do %>
+
+    <p>
+      <%= radio_button_tag :status, 'existing_doc',:checked=>params[:status]=='existing_doc' %>
+        <%= label_tag :status, 'Use Sample text file which is available in our application' %>
+    </p>
+    <p>
+      <%= radio_button_tag :status, 'new_doc',:checked=>params[:status]=='new_doc' %>
+          <%= label_tag :status, 'Upload new docuemnt' %>
+    </p>
+    <p id="file_upload"><%=file_field_tag( :log_file, class: 'image_file_input' )%></p>
+    <%= submit_tag 'Import', class: 'btn1'%>
+</div>
+<%end%>
+
+<%end%>
+

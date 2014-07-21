@@ -1,0 +1,25 @@
+<h2> <%=@campaign.name%></h2><br/>
+<div class="CSSTableGenerator" >
+  <table >
+    <tr>
+      <td> CHOICE  </td>
+      <td > SCORES </td>
+      <td >INVALID SCORES </td>
+    </tr>                          
+  <%@campaign_choice_logs && @campaign_choice_logs.group_by {|ri| ri.choice.id}.each do |type, rec_items|%>
+
+    <tr>
+      <td >
+        <%=Choice.find(type).name%>
+      </td>
+      <td>
+        <%=CampaignChoiceLog.scores(rec_items.map(&:id)).count%>
+      </td>
+     <td>                    
+      <%=CampaignChoiceLog.invalid_scores(rec_items.map(&:id)).count%>
+      </td>
+    </tr>
+   <%end%>
+ 
+ </table>
+</div>
