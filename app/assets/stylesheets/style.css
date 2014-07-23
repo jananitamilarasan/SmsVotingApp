@@ -233,8 +233,8 @@ a.menu4:hover {
 	background-image: url(/assets/nav_bg.jpg);
 	width: 940px;
 	height: 44px;
-	background-color: #F9D525;
-	margin-left: 20px;
+/*	background-color: #F9D525;
+*/	margin-left: 20px;
 }
 #nav ul {
 	padding-top: 15px;
