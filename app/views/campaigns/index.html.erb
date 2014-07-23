@@ -16,7 +16,7 @@
         <%=campaign.name.titleize%>	
       </td>
       <td>
-        <%=link_to("View Scores",campaign_path(campaign))%>
+        <%=link_to("View Scores",campaign_path(campaign),:class=>"view_score")%>
       </td>
   </tr>
   <%end%>

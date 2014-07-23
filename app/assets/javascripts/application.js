@@ -12,5 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
+$(function () {
+  $('#nav a').removeClass()
+  if ($(".cntr_align_txt").val()==""){
+		$('#nav a').last().addClass('active')
+  }else{
+		$('#nav a[href="'+ window.location.pathname +'"]').addClass('active');
+  }
+});

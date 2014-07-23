@@ -2,27 +2,46 @@
 <html>
 <head>
   <title>SmsVotingApp</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application'%>
   <%= csrf_meta_tags %>
+  
 </head>
 <body>
-	<div class="website-txt">
-		TV SMS voting campaigns
-	</div>
-	<%if flash[:error].present?%>
-		<div class="alert-box error" ><%=flash[:error]%></div>
-	<%elsif flash[:notice]%>
-		<div class="alert-box notice" ><%=flash[:notice]%></div>
-	<%end%>
+<!-- wrapper starts -->
+<div class="wrapper"> 
+  <!-- main Starts -->
+  <div class="main"> 
+    <!-- Header Starts -->
+    <div class="header">
+      <div class="logo flt_lt">
+        <h1>TV SMS voting campaigns</h1>
+      </div>
+    <%if flash[:error].present?%>
+    <div class="alert-box error" ><%=flash[:error]%></div>
+  <%elsif flash[:notice]%>
+    <div class="alert-box notice" ><%=flash[:notice]%></div>
+  <%end%>  
+      <div class="clear"></div>
+      <div id="nav">
+        <ul>
+          <li><%=link_to "ABOUT US" ,about_page_path,
+          :class=>"active"%></li>
+          <li><%=link_to "CAMPAIGN LISTS" ,campaigns_path%></li>
 
-<div id='cssmenu'>
-	<ul>
-	   <li class='active'><a href='/about'><span>About</span></a></li>
-	   <li><a href='/campaigns'><span>Campaign Lists</span></a></li>
-	</ul>
+        </ul>
+      </div>
+    </div>
+    <div class="clear"></div>
+    <div class="content">
+      <%=yield%>
+    </div>
+    <div class="clear"></div>
+    <!-- content ends -->
+    
+  </div>
+   <!-- main ends --> 
 </div>
-<%= yield %>
 
 </body>
 </html>
